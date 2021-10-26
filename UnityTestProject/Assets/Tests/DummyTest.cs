@@ -16,6 +16,6 @@ public class DummyTest
     public void DummyTestSimpleFailure()
     {
         Debug.Log("DummyTestSimpleFailure");
-        Assert.Fail("DummyTestSimpleFailure");
+        // Assert.Fail("DummyTestSimpleFailure");
     }
 }
