@@ -44,6 +44,10 @@ jobs:
       - name: Print Folder Content 2
         working-directory: tools/download-dependencies
         run: ls
+      - name: Print Folder Content 3
+        working-directory: tools/download-dependencies
+        run: cd "../../UnityTestProject/Assets/Plugins" && ls
+
       - name: Download Dependencies
         working-directory: tools/download-dependencies
         run: sh download-dependencies.sh
