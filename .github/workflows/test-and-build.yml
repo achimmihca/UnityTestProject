@@ -10,7 +10,7 @@ env:
   PROJECT_PATH: UnityTestProject
 
 jobs:
-  test:
+  test-and-build:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
     strategy:
@@ -38,8 +38,11 @@ jobs:
             Library-${{ env.PROJECT_PATH }}-${{ matrix.targetPlatform }}-
             Library-${{ env.PROJECT_PATH }}-
             Library-
+      
       - name: Download Dependencies
-        run: cd tools/download-dependencies && sh download-dependencies.sh && cd ../../
+        working-directory: tools/download-dependencies
+        run: sh download-dependencies.sh
+      
       - uses: game-ci/unity-test-runner@v2
         id: testRunner
         env:
@@ -55,6 +58,7 @@ jobs:
         with:
           name: Test results (all modes)
           path: ${{ steps.testRunner.outputs.artifactsPath }}
+      
       - uses: game-ci/unity-builder@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
