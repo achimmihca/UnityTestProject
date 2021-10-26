@@ -41,6 +41,9 @@ jobs:
             Library-
       
       # Run "Download Dependencies"
+      - name: Print folder content 1
+        run: ls
+
       - name: Download Dependencies
         working-directory: tools/download-dependencies
         run: sh download-dependencies.sh
