@@ -12,5 +12,8 @@ public class ClickCount : MonoBehaviour, IPointerClickHandler
     {
         clickCount++;
         GetComponent<Text>().text = $"Click count {clickCount}";
+
+        // Call LeanTween API to check that download-dependencies.sh has been run
+        LeanTween.reset();
     }
 }
