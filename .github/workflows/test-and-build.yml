@@ -39,45 +39,36 @@ jobs:
             Library-${{ env.PROJECT_PATH }}-
             Library-
       
-      - name: Print Folder Content 1
-        run: ls
-      - name: Print Folder Content 2
-        working-directory: tools/download-dependencies
-        run: ls
-      - name: Print Folder Content 3
-        working-directory: tools/download-dependencies
-        run: cd "../../UnityTestProject/Assets/Plugins" && ls
-
       - name: Download Dependencies
         working-directory: tools/download-dependencies
         run: sh download-dependencies.sh
       
-      # - uses: game-ci/unity-test-runner@v2
-      #   id: testRunner
-      #   env:
-      #     UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-      #   with:
-      #     projectPath: ${{ env.PROJECT_PATH }}
-      #     unityVersion: ${{ matrix.unityVersion }}
-      #     testMode: all
-      #     githubToken: ${{ secrets.GITHUB_TOKEN }}
-      #     customParameters: "-nographics"
-      # - uses: actions/upload-artifact@v2
-      #   if: always()
-      #   with:
-      #     name: Test results (all modes)
-      #     path: ${{ steps.testRunner.outputs.artifactsPath }}
+      - uses: game-ci/unity-test-runner@v2
+        id: testRunner
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ matrix.unityVersion }}
+          testMode: all
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          customParameters: "-nographics"
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: Test results (all modes)
+          path: ${{ steps.testRunner.outputs.artifactsPath }}
       
-      # - uses: game-ci/unity-builder@v2
-      #   env:
-      #     UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-      #   with:
-      #     projectPath: ${{ env.PROJECT_PATH }}
-      #     unityVersion: ${{ matrix.unityVersion }}
-      #     targetPlatform: ${{ matrix.targetPlatform }}
-      #     customParameters: '-myParameter myValue -myBoolean -ThirdParameter andItsValue'
-      #     allowDirtyBuild: true
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: Build
-      #     path: build
+      - uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ matrix.unityVersion }}
+          targetPlatform: ${{ matrix.targetPlatform }}
+          customParameters: '-myParameter myValue -myBoolean -ThirdParameter andItsValue'
+          allowDirtyBuild: true
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
