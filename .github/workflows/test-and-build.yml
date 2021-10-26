@@ -7,7 +7,7 @@ on:
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-  PROJECT_PATH: .
+  PROJECT_PATH: UnityTestProject
 
 jobs:
   test:
