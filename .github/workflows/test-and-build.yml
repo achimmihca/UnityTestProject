@@ -39,7 +39,7 @@ jobs:
             Library-${{ env.PROJECT_PATH }}-
             Library-
       - name: Download Dependencies
-        run: tools/download-dependencies/download-dependencies.sh
+        run: sh tools/download-dependencies/download-dependencies.sh
       - uses: game-ci/unity-test-runner@v2
         id: testRunner
         env:
