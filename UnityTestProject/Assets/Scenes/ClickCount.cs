@@ -10,6 +10,7 @@ public class ClickCount : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        // Awesome comment
         clickCount++;
         GetComponent<Text>().text = $"Click count {clickCount}";
 
