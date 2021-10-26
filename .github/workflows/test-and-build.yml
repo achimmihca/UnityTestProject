@@ -10,7 +10,7 @@ jobs:
       fail-fast: false
       matrix:
         projectPath:
-          - my-unity-project-path
+          - ''
         unityVersion:
           - 2021.1.1f1
         targetPlatform:
