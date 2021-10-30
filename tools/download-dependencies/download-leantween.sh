@@ -2,7 +2,7 @@
 
 old_dir=$(pwd)
 
-cd "../../UnityTest Project/Assets/Plugins"
+cd "../../UnityTest-Project/Assets/Plugins"
 echo "Removing old LeanTween folder..."
 rm -rf LeanTween
 mkdir LeanTween
